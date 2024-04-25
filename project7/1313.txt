@@ -1,0 +1,23 @@
+n = int(input())
+data = [list(map(int, input().split())) for _ in range(n)]
+step = 0
+adding = 1
+while step < n * 2 - 1:
+    if step == 0:
+        print(data[0][0], end=" ")
+    elif step <= n - 1:
+        i = step
+        j = 0
+        while j <= step:
+            print(data[i][j], end=" ")
+            i -= 1
+            j += 1
+    elif step > n - 1:
+        i = n - 1
+        j = adding
+        while j <= n - 1:
+            print(data[i][j], end=" ")
+            i -= 1
+            j += 1
+        adding += 1
+    step += 1

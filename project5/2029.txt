@@ -1,0 +1,23 @@
+# Request the number of towers
+n = int(input())
+
+# Get the height of each tower, converting letters to their corresponding numbers, starting from 1 for 'A'
+twrs = [ord(x) - 64 for x in input()]
+
+# Initial position of the elevator
+crntpos = 1
+
+# Variable to store the answer
+ans = 0
+
+# Iterate through all towers in reverse order
+for ni in range(n, 0, -1):
+    # If the current position does not match the height of the current tower
+    if crntpos != twrs[ni - 1]:
+        # Increment the answer by 2 raised to the power of (current tower number - 1)
+        ans += pow(2, ni - 1)
+        # Change the current position to the height of the current tower
+        crntpos ^= twrs[ni - 1]
+
+# Output the answer
+print(ans)

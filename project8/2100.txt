@@ -1,0 +1,8 @@
+n = int(input())
+
+count = (sum([len(input().split('+')) for _ in range(n)]) + 2) * 100
+
+if count == 1300:
+    print(count + 100)
+else:
+    print(count)

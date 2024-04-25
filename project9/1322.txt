@@ -1,0 +1,9 @@
+n = int(input()) - 1
+s = input()
+
+inv = [(i, char) for i, char in enumerate(s)]
+inv = list(sorted(inv, key=lambda x: x[1]))
+
+for i in range(len(s)):
+    n = inv[n][0]
+    print(s[n], end='')

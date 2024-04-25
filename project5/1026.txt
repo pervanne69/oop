@@ -1,0 +1,38 @@
+from random import choice
+
+
+def quick_sort(nums: list[int]) -> list[int]:
+    """
+    The function implementing the quick sort algorithm
+    :param: nums (list[int]) - our list, which will sorting.
+    :return: list[int]) - the new sorted list.
+    """
+    if len(nums) <= 1:
+        return nums
+    else:
+        q = choice(nums)
+        s_nums = []
+        m_nums = []
+        e_nums = []
+        for n in nums:
+            if n < q:
+                s_nums.append(n)
+            elif n > q:
+                m_nums.append(n)
+            else:
+                e_nums.append(n)
+        return quick_sort(s_nums) + e_nums + quick_sort(m_nums)
+
+
+N = int(input())
+database = [int(input()) for _ in range(N)]
+
+database_new = quick_sort(database.copy())
+
+input()
+
+K = int(input())
+res = []
+for i in range(K):
+    res.append(database_new[int(input()) - 1])
+print(*res, sep='\n')

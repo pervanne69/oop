@@ -1,0 +1,35 @@
+a = int(input())
+
+tmp = a
+
+
+def func(tmp: int, a: int) -> str:
+    """
+    The program returns the product of numbers which equal to the input number
+    If this number does not exist, the program returns -1.
+    :param tmp:
+    :param a:
+    :return:
+    """
+    if a == 1:
+        return "1"
+    elif a == 0:
+        return "10"
+
+    res = ""
+
+    pr = 1
+    for i in range(9, 1, -1):
+        if tmp % i == 0:
+            while tmp % i == 0:
+                pr *= i
+                res += str(i)
+                tmp //= i
+        if tmp == 1:
+            res = ''.join(list(map(str, sorted([int(j) for j in res]))))
+            return res
+    if pr != a:
+        return "-1"
+
+
+print(func(tmp, a))

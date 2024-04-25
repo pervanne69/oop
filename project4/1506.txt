@@ -1,0 +1,13 @@
+from math import ceil
+n, k = map(int, input().split())
+
+step = ceil(n / k)
+
+l = list(map(int, input().split()))
+
+for i in range(step):
+    res = list(map(str, l[i::step]))
+    for j in res:
+        res_j = j.rjust(4, " ")
+        print(res_j, end="")
+    print()

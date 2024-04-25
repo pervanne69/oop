@@ -1,0 +1,31 @@
+def bubble_sort(length: int, lst: list[int]) -> list[int]:
+    """
+    The function implementing the bubble sort algorithm.
+    :param: length (int) - the length of the list.
+    :param: lst (lst[int]) - our list, which will sorting.
+    :return: (list[int]) - the new sorted list.
+    """
+    for i in range(length):
+        for j in range(0, length - i - 1):
+            if lst[j] > lst[j + 1]:
+                lst[j], lst[j + 1] = lst[j + 1], lst[j]
+    return lst
+
+
+def min_supporters(lst: list[int]) -> int:
+    """
+    Function for calculating the minimum number of party supporters.
+    :param: lst (list[int]) - Sorted list.
+    :return: (int) minimum number of party supporters capable of deciding the outcome of the vote.
+    """
+    res = 0
+    for i in range(0, len(lst) // 2 + 1):
+        mini = lst[i]
+        res += int(mini / 2) + 1
+    return res
+
+
+n = int(input())
+data = list(map(int, input().split()))
+
+print(min_supporters(bubble_sort(n, data.copy())))
