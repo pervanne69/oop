@@ -1,0 +1,38 @@
+from math import comb
+
+
+def num_of_pow(n_p: int, k_p: int, b_p: int) -> int:
+    """
+    A program to determine the number of integers
+    lying on the segment [X; U] and representing
+    the sum of exactly k_p different powers
+    of the integer B with integer exponents.
+    :param n_p: (int) - line segment
+    :param k_p: (int) - different powers with integer exp
+    :param b_p: (int) - an integer with which need to represent nums
+    :return: (int) - the number of integers lying between x and y
+    that represent the sum of exactly k_p distinct
+    powers of an integer b_p with integer exponents.
+    """
+    if n_p < b_p:
+        return int(k_p <= 1 and n_p > 0 or n_p == 0 and k_p == 0)
+    p = 1
+    k = 0
+    while p * b_p <= n_p:
+        p *= b_p
+        k += 1
+    if n_p // p >= 2:
+        return comb(k, k_p - 1) + (k_p > 0) * comb(k, k_p)
+    elif n_p // p == 1:
+        return comb(k, k_p) + (k_p > 0) * num_of_pow(n_p - p, k_p - 1, b_p)
+
+
+def main():
+    x, y = map(int, input().split())
+    k = int(input())
+    b = int(input())
+    print(num_of_pow(y, k, b) - num_of_pow(x - 1, k, b))
+
+
+if __name__ == "__main__":
+    main()

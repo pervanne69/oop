@@ -1,0 +1,71 @@
+import random
+
+# Функция для генерации запроса
+def generate_query(i, j):
+    return f"? {i} {j}"
+
+# Функция для генерации "утверждения"
+def generate_guess(i, j):
+    return f"! {i} {j}"
+
+# Функция для игры
+def play_game(N, setups):
+    for _ in range(N):
+        # Считываем начальную расстановку шариков
+        s = setups[_]
+
+        # Генерируем запросы
+        for j in range(len(s)):
+            for k in range(1, len(s)):
+                print(generate_query(k, k + 1))
+
+        # Выбираем случайные позиции для "утверждения"
+        n = random.randint(1, len(s) - 1)
+        print(generate_guess(n, n + 1))
+
+# Считываем количество игр
+num_games = int(input())
+
+# Считываем начальные расстановки шариков
+setups = [input().strip() for _ in range(num_games)]
+
+# Запускаем игру
+play_game(num_games, setups)
+
+-------------------
+
+import random
+
+
+# Функция для генерации запроса
+def generate_query(i, j):
+    return f"? {i} {j}"
+
+
+# Функция для генерации "утверждения"
+def generate_guess(i, j):
+    return f"! {i} {j}"
+
+
+# Функция для игры
+def play_game(N, setups):
+    for setup in setups:
+        # Считываем начальную расстановку шариков
+        s = setup.strip()
+
+        # Генерируем запросы
+        for j in range(len(s)):
+            for k in range(1, len(s)):
+                print(generate_query(k, k + 1))
+
+        # Выбираем случайные позиции для "утверждения"
+        n = random.randint(1, len(s) - 1)
+        print(generate_guess(n, n + 1))
+
+
+# Считываем количество игр
+num_games = int(input())
+
+# Считываем начальные расстановки шариков и играем в каждую из них
+setups = [input() for _ in range(num_games)]
+play_game(num_games, setups)

@@ -1,0 +1,35 @@
+list_d = [0 for _ in range(32)]
+bad = False
+
+
+def hanoi(n: int, src: int, destination: int, auxiliary: int) -> bool or int:
+    """
+    This function displays the optimal number of moves
+    from the beginning of the game until reaching a given position
+    :param n: (int) - amount pf pegs
+    :param src: (int) - source peg
+    :param destination: (int) - destination peg
+    :param auxiliary: (int) - temporary leg
+    :return: True if the specified position cannot be reached
+    else count of moves
+    """
+    global bad, list_d
+    if n == 0:
+        return 0
+    if list_d[n - 1] == src:
+        return hanoi(n - 1, src, auxiliary, destination)
+    elif list_d[n - 1] == destination:
+        return (1 << (n - 1)) + hanoi(n - 1, auxiliary, destination, src)
+    bad = True
+    return bad
+
+
+N = int(input())
+
+for i in range(N):
+    list_d[i] = int(input())
+result = hanoi(N, 1, 2, 3)
+if bad:
+    print(-1)
+else:
+    print(result)
