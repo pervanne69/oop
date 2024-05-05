@@ -3,7 +3,7 @@ import random
 statements = []
 
 
-def main():
+def main() -> None:
     """
     This is the entry-point of program
     """
